@@ -1,0 +1,27 @@
+body{
+  background-color: $main-color;
+  color: $dark-color;
+  font-weight: 600;
+}
+
+* {
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $dark-color;
+    border-radius: 10px;
+  }
+}
+
+/* This will style all scrollbars in your application for Firefox */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: $dark-color transparent;
+}

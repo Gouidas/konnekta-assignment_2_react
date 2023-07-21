@@ -1,0 +1,43 @@
+.selected-value {
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid $white-color;
+  border-radius: 7px;
+
+  .label {
+    font-size: 0.8em;
+    transform: translateY(-50%);
+  }
+
+  .arrow-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translateY(-50%);
+  }
+
+  &.open {
+    .arrow-icon {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    
+    .label {
+      font-weight: 500;
+      font-size: 12px;
+      position: absolute;
+      color: $gray-color;
+    }
+  }
+
+  &.error {
+    color: $red-color;
+    box-shadow: 0 0 8px -3px $red-color;
+
+    .arrow-icon {
+      filter: invert(34%) sepia(80%) saturate(5383%) hue-rotate(-360deg) brightness(97%) contrast(114%);
+    }
+  }
+}

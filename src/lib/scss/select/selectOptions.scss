@@ -1,0 +1,37 @@
+.select .options {
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  border: 2px solid $white-color;
+  border-top: none;
+  margin-top: 10px;
+  border-top: 2px solid $white-color;
+  border-radius: $border-radius;
+
+  .option {
+    padding: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &.selected,
+    &:hover {
+      background-color: $dark-color;
+      color: $white-color; // Assuming you have a variable for white color
+    }
+  }
+
+  img {
+    width: 50px;
+  }
+
+  .no-data {
+    padding: 10px;
+    text-align: center;
+    color: #999;
+  }
+
+  &.empty-state {
+    padding: 20px 0;
+  }
+}
