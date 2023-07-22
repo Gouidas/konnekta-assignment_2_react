@@ -13,7 +13,7 @@ const Select: React.FC<SelectProps> = ({ values, onSelect, multiple, required, p
   const node = useRef<HTMLDivElement | null>(null);
   useOutsideClick(node, () => setIsOpen(false));
 
-  const error = required && !selectedValues.length;
+  const error = required && values.length === 0;
 
   return (
     <div className='flex relative'>
