@@ -10,45 +10,45 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Here is the application structure we followed:
 
-src
-│
-└───assets
-│ └───images (Directory to store all image files)
-│ └───fonts (Directory to store all font files)
-│
-└───components (Parent directory for app components)
-│ └───select
-│ └───index.tsx
-│ └───NoData.tsx
-│ └───Option.tsx
-│ └───SelectedItems.tsx
-│ └───SelectInput.tsx
-│ └───SelectOptions.tsx
-│
-└───lib
-│ └───hooks
-│ └───useHandleSelect.ts
-│ └───useInputChange.ts
-│ └───useOutsideClick.ts
-│
-└───scss (Directory to wrap all style dependencies of the application)
-│ └───select
-│ └───select.scss
-│ └───selectedItems.scss
-│ └───selectInput.scss
-│ └───selectOptions.scss
-│ └───utilities.scss
-│ └───base.scss
-│ └───layout.scss
-│ └───main.scss
-│ └───variables.scss
-│
-└───types
-│ └───index.ts
-│
-└───constants (Parent directory for constant data)
-│
-└───App.tsx
+      src
+      │
+      └───assets
+      │ └───images (Directory to store all image files)
+      │ └───fonts (Directory to store all font files)
+      │
+      └───components (Parent directory for app components)
+      │ └───select
+      │ └───index.tsx
+      │ └───NoData.tsx
+      │ └───Option.tsx
+      │ └───SelectedItems.tsx
+      │ └───SelectInput.tsx
+      │ └───SelectOptions.tsx
+      │
+      └───lib
+      │ └───hooks
+      │ └───useHandleSelect.ts
+      │ └───useInputChange.ts
+      │ └───useOutsideClick.ts
+      │
+      └───scss (Directory to wrap all style dependencies of the application)
+      │ └───select
+      │ └───select.scss
+      │ └───selectedItems.scss
+      │ └───selectInput.scss
+      │ └───selectOptions.scss
+      │ └───utilities.scss
+      │ └───base.scss
+      │ └───layout.scss
+      │ └───main.scss
+      │ └───variables.scss
+      │
+      └───types
+      │ └───index.ts
+      │
+      └───constants (Parent directory for constant data)
+      │
+      └───App.tsx
 
 ## Application Architecture
 
