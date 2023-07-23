@@ -1,7 +1,7 @@
 body{
   background-color: $main-color;
   color: $dark-color;
-  font-weight: 600;
+  font-weight: $font-weight-medium;
 }
 
 * {

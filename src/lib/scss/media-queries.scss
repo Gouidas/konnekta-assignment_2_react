@@ -1,0 +1,14 @@
+@media (max-width: 650px) {
+  .selectBox {
+    flex-direction: column;
+  }
+  .selectedItems {
+    position: static;
+    order: 1;
+  }
+
+  .select {
+    order: 2;
+  }
+
+}

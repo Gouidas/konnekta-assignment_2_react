@@ -16,14 +16,14 @@ const Select: React.FC<SelectProps> = ({ values, onSelect, multiple, required, p
   const error = required && values.length === 0;
 
   return (
-    <div className='flex relative'>
+    <div className='selectBox flex relative'>
       <div className={`select ${error ? 'error' : ''}`} ref={node} data-testid="select-div">
         <SelectInput setIsOpen={setIsOpen} isOpen={isOpen} placeholder={placeholder} error={error} setFilter={setFilter} />
         {isOpen && (
           <SelectOptions values={values} selectedValues={selectedValues} handleSelect={handleSelect} filter={filter} />
         )}
       </div>
-      <div className='absolute r-full'>
+      <div className='selectedItems absolute r-full'>
         <SelectedItems selectedValues={selectedValues} />
       </div>
     </div>
