@@ -1,11 +1,11 @@
 import React from 'react';
 import { SelectedItemsProps } from '../../lib/types';
 
-const SelectedItems: React.FC<SelectedItemsProps> = ({ selectedValues }) => {
+const SelectedItems: React.FC<SelectedItemsProps> = ({ selectedValues, handleRemove }) => {
   return (
     <div className="selected-items">
       {selectedValues.map(value => (
-        <div className="selected-item" key={value}>
+        <div className="selected-item" key={value} onClick={() => handleRemove(value)}>
           {value}
         </div>
       ))}
@@ -14,3 +14,4 @@ const SelectedItems: React.FC<SelectedItemsProps> = ({ selectedValues }) => {
 };
 
 export default SelectedItems;
+

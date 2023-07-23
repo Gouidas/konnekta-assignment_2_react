@@ -1,9 +1,5 @@
 import { useState, useCallback } from "react";
-
-interface UseHandleSelectProps {
-  multiple?: boolean;
-  onSelect: (value: string | string[]) => void;
-}
+import { UseHandleSelectProps } from "../types";
 
 const useHandleSelect = ({ multiple, onSelect }: UseHandleSelectProps) => {
   const [selectedValues, setSelectedValues] = useState<string[]>([]);
@@ -26,7 +22,23 @@ const useHandleSelect = ({ multiple, onSelect }: UseHandleSelectProps) => {
     [multiple, onSelect, selectedValues]
   );
 
-  return { handleSelect, selectedValues, setSelectedValues, isOpen, setIsOpen };
+  const handleRemove = useCallback(
+    (value: string) => {
+      const newValues = selectedValues.filter((v) => v !== value);
+      setSelectedValues(newValues);
+      onSelect(newValues);
+    },
+    [onSelect, selectedValues]
+  );
+
+  return {
+    handleSelect,
+    handleRemove,
+    selectedValues,
+    setSelectedValues,
+    isOpen,
+    setIsOpen,
+  };
 };
 
 export default useHandleSelect;

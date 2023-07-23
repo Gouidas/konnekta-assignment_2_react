@@ -10,6 +10,7 @@ export interface OptionProps {
   value: string;
   isSelected: boolean;
   onSelect: () => void;
+  optionRenderer?: (value: string, isSelected: boolean) => React.ReactNode;
 }
 
 export interface SelectInputProps {
@@ -25,8 +26,36 @@ export interface SelectOptionsProps {
   selectedValues: string[];
   handleSelect: (value: string) => void;
   filter: string;
+  optionRenderer?: (value: string, isSelected: boolean) => JSX.Element | null; // add this line
 }
 
 export interface SelectedItemsProps {
   selectedValues: string[];
+  handleRemove: (value: string) => void;
+}
+
+type CarBrand = {
+  num_models: number;
+  img_url: string;
+  max_car_id: number;
+  id: number;
+  name: string;
+  avg_horsepower: number;
+  avg_price: number;
+};
+
+export type CarBrandsResponse = CarBrand[];
+
+export interface ClearButtonProps {
+  clearSelected: () => void;
+  text: string;
+}
+
+export interface UseClearSelectedProps {
+  setSelectedValues: (values: string[]) => void;
+}
+
+export interface UseHandleSelectProps {
+  multiple: boolean;
+  onSelect: (value: string | string[]) => void;
 }

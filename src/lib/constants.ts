@@ -1,9 +1,6 @@
-export const values = [
-  "Chevrolet Camaro",
-  "Merchedes-Benz",
-  "Audi A3",
-  "Bmw",
-  "Toyota",
-];
-
 export const placeholder = "Cars";
+
+export const colors = {
+  hover: "#848282",
+  selected: "#d9e1ea",
+};

@@ -6,7 +6,10 @@ export const useOutsideClick = (
 ): void => {
   const handleClick = useCallback(
     (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) {
+      if (
+        !ref.current?.contains(e.target as Node) &&
+        !(e.target as Element).closest(".selectedItems")
+      ) {
         callback();
       }
     },

@@ -3,7 +3,7 @@ import Option from './Option';
 import NoData from './NoData';
 import { SelectOptionsProps } from '../../lib/types';
 
-const SelectOptions: React.FC<SelectOptionsProps> = ({ values, selectedValues, handleSelect, filter }) => {
+const SelectOptions: React.FC<SelectOptionsProps> = ({ values, selectedValues, handleSelect, filter, optionRenderer }) => {
   const filteredValues = values.filter(val => val.toLowerCase().includes(filter.toLowerCase()));
 
   if (filteredValues.length === 0) {
@@ -18,6 +18,7 @@ const SelectOptions: React.FC<SelectOptionsProps> = ({ values, selectedValues, h
           value={value} 
           isSelected={selectedValues.includes(value)} 
           onSelect={() => handleSelect(value)} 
+          optionRenderer={optionRenderer}
         />
       ))}
     </div>
