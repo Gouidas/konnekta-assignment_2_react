@@ -19,6 +19,7 @@ Here is the application structure we followed:
       │ └───reusable
       │     └───button.tsx
       │     └───LoadingScreen.tsx
+      │     └───error.tsx
       │ └───select
       │     └───index.tsx
       │     └───NoData.tsx
@@ -71,6 +72,7 @@ The application is divided into separate components each of which has a distinct
 - `ClearButton`: This is a reusable button component that calls a passed-in
 - `clearSelected `: This is a reusable button component that calls a passed-in clearSelected function when clicked. In the context of this dropdown, it is used to clear all currently selected items.
 - `LoadingScreen `: Displays a loading message while data is being fetched from the API.
+- `ErrorComponent `: Displays an error message if an error occurred during data fetching.
 
 ### Custom Hooks
 
@@ -81,6 +83,7 @@ Custom hooks have been used to encapsulate complex logic and side effects:
 - `useOutsideClick`: A custom hook that tracks a click event outside of the dropdown component to close the dropdown.
 - `useClearSelected`: A custom hook to clear the selected items in the dropdown.
 - `useOptionRenderer`: A custom hook to render the options with specific styles based on their selection state.
+- `useError`: A custom hook for error handling. It provides functionality for setting an error message and controlling its visibility.
 
 ### Styles
 

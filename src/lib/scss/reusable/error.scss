@@ -1,0 +1,24 @@
+// ErrorComponent.scss
+
+.error-component {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background: $white-color;
+  color: $red-color;
+  border-color: $white-color;
+  padding: .75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+
+  button {
+      background: none;
+      border: none;
+      color: $red-color;
+      cursor: pointer;
+  }
+}

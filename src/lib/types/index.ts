@@ -59,3 +59,9 @@ export interface UseHandleSelectProps {
   multiple: boolean;
   onSelect: (value: string | string[]) => void;
 }
+
+export interface ErrorComponentProps {
+  message: string;
+  visible: boolean;
+  dismissError: () => void;
+}
