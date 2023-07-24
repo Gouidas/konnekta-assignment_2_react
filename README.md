@@ -30,12 +30,16 @@ Here is the application structure we followed:
       │
       └───lib
       │     └───hooks
+      │        └───useClearSelected.ts
+      │        └───useError.ts
       │        └───useHandleSelect.ts
       │        └───useInputChange.ts
+      │        └───useOptionRenderer.ts
       │        └───useOutsideClick.ts
             └───scss (Directory to wrap all style dependencies of the application)
       │        └───reusable
       │           └───button.scss
+      │           └───error.scss
       │           └───loading.scss
       │        └───select
       │           └───select.scss
@@ -46,6 +50,7 @@ Here is the application structure we followed:
       │        └───base.scss
       │        └───layout.scss
       │        └───main.scss
+      │        └───media-queries.scss
       │        └───variables.scss
       │
       └───types
