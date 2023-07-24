@@ -1,3 +1,4 @@
+import React from 'react';
 import { ClearButtonProps } from "../../lib/types";
 
 const ClearButton: React.FC<ClearButtonProps> = ({ clearSelected, text }) => (
