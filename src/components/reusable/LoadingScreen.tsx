@@ -5,7 +5,7 @@ const LoadingScreen: React.FC = () => {
   return (
     // The outer div acts as a container for the loading text.
     <div className="loading-screen">
-      // This div contains the text that will be displayed while loading
+      {/* This div contains the text that will be displayed while loading */}
       <div className="loading-text">Loading...</div>
     </div>
   );
