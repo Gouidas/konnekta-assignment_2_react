@@ -2,46 +2,50 @@
 
 This repository contains the Konnekta Assignment 2, implemented with React. The main feature of this project is a multi-select dropdown component that allows users to select one or multiple items from a list.
 
-## Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Application Structure
 
 Here is the application structure we followed:
 
       src
       │
+      └───api
+      │     └───carsAPI.ts
+      │
       └───assets
-      │ └───images (Directory to store all image files)
-      │ └───fonts (Directory to store all font files)
+      │     └───images (Directory to store all image files)
+      │     └───fonts (Directory to store all font files)
       │
       └───components (Parent directory for app components)
+      │ └───reusable
+      │     └───button.tsx
+      │     └───LoadingScreen.tsx
       │ └───select
-      │ └───index.tsx
-      │ └───NoData.tsx
-      │ └───Option.tsx
-      │ └───SelectedItems.tsx
-      │ └───SelectInput.tsx
-      │ └───SelectOptions.tsx
+      │     └───index.tsx
+      │     └───NoData.tsx
+      │     └───Option.tsx
+      │     └───SelectedItems.tsx
+      │     └───SelectInput.tsx
+      │     └───SelectOptions.tsx
       │
       └───lib
-      │ └───hooks
-      │ └───useHandleSelect.ts
-      │ └───useInputChange.ts
-      │ └───useOutsideClick.ts
-      │
-      └───scss (Directory to wrap all style dependencies of the application)
-      │ └───select
-      │ └───select.scss
-      │ └───selectedItems.scss
-      │ └───selectInput.scss
-      │ └───selectOptions.scss
-      │ └───utilities.scss
-      │ └───base.scss
-      │ └───layout.scss
-      │ └───main.scss
-      │ └───variables.scss
+      │     └───hooks
+      │        └───useHandleSelect.ts
+      │        └───useInputChange.ts
+      │        └───useOutsideClick.ts
+            └───scss (Directory to wrap all style dependencies of the application)
+      │        └───reusable
+      │           └───button.scss
+      │           └───loading.scss
+      │        └───select
+      │           └───select.scss
+      │           └───selectedItems.scss
+      │           └───selectInput.scss
+      │           └───selectOptions.scss
+      │        └───utilities.scss
+      │        └───base.scss
+      │        └───layout.scss
+      │        └───main.scss
+      │        └───variables.scss
       │
       └───types
       │ └───index.ts
@@ -62,6 +66,11 @@ The application is divided into separate components each of which has a distinct
 - `SelectInput`: Manages the input box functionality, allowing users to filter options and control the opening/closing of the dropdown.
 - `SelectOptions`: Responsible for rendering the dropdown options and managing their selection state.
 - `SelectedItems`: Utilized for displaying the items that the user has selected from the dropdown.
+- `NoData`: This component is responsible for rendering a "No data" message along with an associated image when there are no options to display in the dropdown list. This is typically used when all options have been filtered out by the user or if the provided option list is empty..
+- `Option`: This component represents a single selectable option in the dropdown list. It handles displaying the value of the option and applying a "selected" style if the option is currently selected. It also manages the onClick event for selecting or deselecting the option.
+- `ClearButton`: This is a reusable button component that calls a passed-in
+- `clearSelected `: This is a reusable button component that calls a passed-in clearSelected function when clicked. In the context of this dropdown, it is used to clear all currently selected items.
+- `LoadingScreen `: Displays a loading message while data is being fetched from the API.
 
 ### Custom Hooks
 
@@ -70,6 +79,8 @@ Custom hooks have been used to encapsulate complex logic and side effects:
 - `useHandleSelect`: A custom hook that handles the selection and deselection of items.
 - `useInputChange`: A custom hook that tracks changes to the input field for filtering options.
 - `useOutsideClick`: A custom hook that tracks a click event outside of the dropdown component to close the dropdown.
+- `useClearSelected`: A custom hook to clear the selected items in the dropdown.
+- `useOptionRenderer`: A custom hook to render the options with specific styles based on their selection state.
 
 ### Styles
 
