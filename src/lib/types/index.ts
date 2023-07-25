@@ -64,4 +64,11 @@ export interface ErrorComponentProps {
   message: string;
   visible: boolean;
   dismissError: () => void;
+  dismissable?: boolean;
+}
+
+export interface SelectionSectionProps {
+  selectedValues: string[];
+  clearSelected: () => void;
+  handleRemove: (value: string) => void;
 }

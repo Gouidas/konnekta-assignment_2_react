@@ -4,13 +4,14 @@ import useHandleSelect from '../../lib/hooks/useHandleSelect';
 import useClearSelected from '../../lib/hooks/useClearSelected';
 import SelectInput from './SelectInput';
 import SelectOptions from './SelectOptions';
-import SelectedItems from './SelectedItems';
-import ClearButton from '../reusable/button';
+import SelectionSection from './SelectionSection';
 import { SelectProps } from '../../lib/types';
 import useOptionRenderer from '../../lib/hooks/useOptionRenderer';
+import useError from '../../lib/hooks/useError';
+import ErrorComponent from '../reusable/Error';
 
 // The Select component serves to display a dropdown of selectable values and manage selections
-const Select: React.FC<SelectProps> = ({ values, onSelect, multiple = false, required, placeholder}) => {
+const Select: React.FC<SelectProps> = ({ values, onSelect, multiple = false, required, placeholder }) => {
   // Using a custom hook to handle the selection of values from dropdown
   const { handleSelect, handleRemove, selectedValues, isOpen, setIsOpen, setSelectedValues } = useHandleSelect({ multiple, onSelect });
 
@@ -23,18 +24,15 @@ const Select: React.FC<SelectProps> = ({ values, onSelect, multiple = false, req
   // Use the useOutsideClick hook to close the dropdown when clicked outside
   useOutsideClick(node, () => setIsOpen(false));
 
-  // Check for error if the dropdown is required but no values are provided
-  const error = required && values.length === 0;
-
-  // New state variable to track if the required validation error should be displayed
-  const [showRequiredError, setShowRequiredError] = useState(false);
+  // Use the useError hook to manage error state
+  const { error: requiredError, showError, dismissError } = useError();
 
   // If the Select component is required and no value is selected, display the error
   useEffect(() => {
     if (required && selectedValues.length === 0) {
-      setShowRequiredError(true);
+      showError('You need to add an item in the list');
     } else {
-      setShowRequiredError(false);
+      dismissError();
     }
   }, [selectedValues, required]);
 
@@ -46,22 +44,16 @@ const Select: React.FC<SelectProps> = ({ values, onSelect, multiple = false, req
 
   return (
     <div className='selectBox flex relative'>
-      <div className={`select ${(error || showRequiredError) ? 'error' : ''}`} ref={node} data-testid="select-div">
-        <SelectInput setIsOpen={setIsOpen} isOpen={isOpen} placeholder={placeholder} error={error || showRequiredError} setFilter={setFilter} />
+      <div className={`select ${requiredError.visible ? 'error' : ''}`} ref={node} data-testid="select-div">
+        <SelectInput setIsOpen={setIsOpen} isOpen={isOpen} placeholder={placeholder} error={requiredError.visible} setFilter={setFilter} />
         {/* Conditionally render the dropdown options if the dropdown is open */}
         {isOpen && (
           <SelectOptions values={values} selectedValues={selectedValues} handleSelect={handleSelect} filter={filter} optionRenderer={optionRenderer}/>
         )}
       </div>
-      {/* Conditionally render the selected items and the clear button if there are any selected values */}
-      {selectedValues.length > 0 && (
-        <div className='selectedItems absolute r-full'>
-            <ClearButton clearSelected={clearSelected} text="Clear Selection" />
-          <div>
-            <SelectedItems selectedValues={selectedValues} handleRemove={handleRemove} />
-          </div>
-        </div>
-      )}
+      <SelectionSection selectedValues={selectedValues} clearSelected={clearSelected} handleRemove={handleRemove} />
+      <ErrorComponent message={requiredError.message} visible={requiredError.visible} dismissError={dismissError} dismissable={false} />
+
     </div>
   );
 };
