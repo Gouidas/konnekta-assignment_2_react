@@ -110,6 +110,7 @@ The following fundamental design principles have been adhered to ensure the code
 - **Function Composition**: We have assembled small, purpose-specific functions to build complex functionalities.
 - **Consistency**: Consistent coding style and naming conventions have been maintained across the codebase, ensuring the code is easily readable and understandable.
 - **Efficiency**: We have taken steps to make the application more efficient by reducing the number of network requests. We have implemented a simple caching mechanism using the browser's localStorage to store data from network requests. This ensures that if the same data is requested again within a 24-hour period, it is fetched from the cache instead of making another network request, thus reducing latency and data consumption. This is particularly beneficial for users on slower or metered network connections.
+- **Performance Optimization**: To enhance the responsiveness and performance of our application, we implemented a debounce function in the search feature. This function delays the processing of the keyup event until the user has stopped typing for a predefined amount of time. By doing this, we prevent unnecessary and costly computations from being performed every time the user presses a key, resulting in a smoother and more efficient user experience. This technique is especially beneficial in search functionalities where real-time result filtering is performed based on the user's input.
 
 ## Installation and Running the Project
 

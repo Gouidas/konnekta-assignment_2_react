@@ -1,22 +1,36 @@
-import { useState, useCallback, ChangeEvent } from "react";
+import { useState, useEffect, useCallback, ChangeEvent } from "react";
+
+// useDebounce is a helper hook that debounces an input for a specified amount of time
+const useDebounce = (value: string, delay: number) => {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+};
 
 // useInputChange is a custom hook that manages the state and logic of an input element
 const useInputChange = (setFilter: (filter: string) => void) => {
-  // inputValue holds the current value of the input
   const [inputValue, setInputValue] = useState("");
+  const debouncedInputValue = useDebounce(inputValue, 500);
 
-  // handleInputChange is a function that updates inputValue and also calls setFilter
-  // setFilter is a function passed as a parameter, intended to filter values based on the input
-  const handleInputChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value; // Get new input value from the event object
-      setInputValue(newValue); // Update inputValue with the new value
-      setFilter(newValue); // Update the filter with the new value
-    },
-    [setFilter]
-  );
+  useEffect(() => {
+    setFilter(debouncedInputValue);
+  }, [debouncedInputValue, setFilter]);
 
-  // The hook returns the inputValue and the function to handle its changes
+  const handleInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setInputValue(newValue);
+  }, []);
+
   return { inputValue, handleInputChange };
 };
 
