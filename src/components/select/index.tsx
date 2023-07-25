@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useOutsideClick } from '../../lib/hooks/useOutsideClick';
 import useHandleSelect from '../../lib/hooks/useHandleSelect';
 import useClearSelected from '../../lib/hooks/useClearSelected';
@@ -26,6 +26,18 @@ const Select: React.FC<SelectProps> = ({ values, onSelect, multiple = false, req
   // Check for error if the dropdown is required but no values are provided
   const error = required && values.length === 0;
 
+  // New state variable to track if the required validation error should be displayed
+  const [showRequiredError, setShowRequiredError] = useState(false);
+
+  // If the Select component is required and no value is selected, display the error
+  useEffect(() => {
+    if (required && selectedValues.length === 0) {
+      setShowRequiredError(true);
+    } else {
+      setShowRequiredError(false);
+    }
+  }, [selectedValues, required]);
+
   // Hook for clearing all selected values
   const clearSelected = useClearSelected({ setSelectedValues });
 
@@ -34,8 +46,8 @@ const Select: React.FC<SelectProps> = ({ values, onSelect, multiple = false, req
 
   return (
     <div className='selectBox flex relative'>
-      <div className={`select ${error ? 'error' : ''}`} ref={node} data-testid="select-div">
-        <SelectInput setIsOpen={setIsOpen} isOpen={isOpen} placeholder={placeholder} error={error} setFilter={setFilter} />
+      <div className={`select ${(error || showRequiredError) ? 'error' : ''}`} ref={node} data-testid="select-div">
+        <SelectInput setIsOpen={setIsOpen} isOpen={isOpen} placeholder={placeholder} error={error || showRequiredError} setFilter={setFilter} />
         {/* Conditionally render the dropdown options if the dropdown is open */}
         {isOpen && (
           <SelectOptions values={values} selectedValues={selectedValues} handleSelect={handleSelect} filter={filter} optionRenderer={optionRenderer}/>
@@ -50,7 +62,6 @@ const Select: React.FC<SelectProps> = ({ values, onSelect, multiple = false, req
           </div>
         </div>
       )}
-
     </div>
   );
 };
