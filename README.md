@@ -13,7 +13,6 @@ Here is the application structure we followed:
       │
       └───assets
       │     └───images (Directory to store all image files)
-      │     └───fonts (Directory to store all font files)
       │
       └───components (Parent directory for app components)
       │ └───reusable
@@ -110,6 +109,7 @@ The following fundamental design principles have been adhered to ensure the code
 - **Open/Closed Principle**: Components are designed to be easily extendable for additional functionalities. However, modifications in the existing functionality do not necessitate changes in the component's code.
 - **Function Composition**: We have assembled small, purpose-specific functions to build complex functionalities.
 - **Consistency**: Consistent coding style and naming conventions have been maintained across the codebase, ensuring the code is easily readable and understandable.
+- **Efficiency**: We have taken steps to make the application more efficient by reducing the number of network requests. We have implemented a simple caching mechanism using the browser's localStorage to store data from network requests. This ensures that if the same data is requested again within a 24-hour period, it is fetched from the cache instead of making another network request, thus reducing latency and data consumption. This is particularly beneficial for users on slower or metered network connections.
 
 ## Installation and Running the Project
 
