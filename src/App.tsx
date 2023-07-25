@@ -21,8 +21,11 @@ const App: React.FC = () => {
     const fetchCarBrands = async () => {
       try {
         const data = await getCarsData();
-        const brandNames = data.map(brand => brand.name);
+        let brandNames = data.map(brand => brand.name);
         // const brandNames = data.map(brand => brand.name).slice(0, 4); //use this for testing the scroll if less than 4
+
+        // Sort the data alphabetically here before setting it to state
+        brandNames = brandNames.sort((a, b) => a.localeCompare(b));
 
         // Update the carBrands state with the retrieved brand names
         setCarBrands(brandNames);
